@@ -13,4 +13,4 @@ class Table(Base):
     seats = Column(Integer, nullable=False)
     location = Column(String(100), nullable=False)
 
-    reservations = relationship("Reservation", back_populates='tables')
+    reservations = relationship("Reservation", back_populates='table')

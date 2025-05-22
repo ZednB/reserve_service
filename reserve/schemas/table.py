@@ -1,13 +1,15 @@
 from typing import Optional, List
 
 from pydantic import BaseModel
+from typing import TYPE_CHECKING
 
-from reserve.schemas.reservation import Reservation
+# if TYPE_CHECKING:
+#     from reserve.schemas.reservation import Reservation
 
 
 class TableBase(BaseModel):
     name: str
-    seats: str
+    seats: int
     location: str
 
 
@@ -17,13 +19,21 @@ class TableCreate(TableBase):
 
 class TableUpdate(TableBase):
     name: Optional[str] = None
-    seats: Optional[str] = None
+    seats: Optional[int] = None
     location: Optional[str] = None
 
 
 class Table(TableBase):
     id: int
-    reservations: List[Reservation] = []
+    reservations: List["Reservation"] = []
 
     class Config:
         from_attributes = True
+
+
+def rebuild_table():
+    from reserve.schemas.reservation import Reservation
+    Table.model_rebuild()
+
+
+rebuild_table()

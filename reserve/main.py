@@ -9,3 +9,5 @@ app = FastAPI(
 
 for router in (reserve_router, tables_router):
     app.include_router(router)
+
+# нужно подсоединить проверки и написать тесты

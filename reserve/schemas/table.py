@@ -25,7 +25,10 @@ class TableUpdate(TableBase):
 
 class Table(TableBase):
     id: int
-    reservations: List["Reservation"] = []
+
+    class Config:
+        orm_mode = True
+    # reservations: List["Reservation"] = []
 
     class Config:
         from_attributes = True

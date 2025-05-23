@@ -19,7 +19,7 @@ def list_tables(db: Session = Depends(get_db)):
 
 
 @router.post("/", response_model=Table, status_code=status.HTTP_201_CREATED)
-def create_table(table: TableCreate, db: Session = Depends((get_db))):
+def create_table(table: TableCreate, db: Session = Depends(get_db)):
     """Создание столика"""
     return create_tables(db, table.dict())
 

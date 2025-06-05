@@ -22,7 +22,6 @@ def test_create_reservation_success(client):
         print("⚠️ Время уже забронировано, что тоже допустимо:", response.json())
 
     else:
-        # Любой другой код — это неожиданная ошибка
         assert False, f"Непредвиденный статус ответа: {response.status_code}, тело: {response.json()}"
 
 
